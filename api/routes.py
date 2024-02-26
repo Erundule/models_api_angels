@@ -9,6 +9,8 @@ def index():
 def predict():
     return "Predict"
 
+
+#endpoint que lista os parâmetros do modelo para o getway
 @app.route('/api/parameters', methods=['GET'])
 def model_parameters():
     parameters = ['previous_weight', 'gestational_risk', 'schooling', 'has_hypertension', 'has_diabetes', 'has_pelvic_surgery','has_urinary_infection', 'has_congenital_malformation', 
