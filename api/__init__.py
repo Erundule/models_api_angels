@@ -4,12 +4,16 @@ from gatewayConection import client
 
 app = Flask(__name__)
 
-@app.on_event("startup")
+
 async def startup():
     await client.start()
 
-@app.on_event("shutdown")
+
 async def shutdown():
     await client.stop()
+
+
+app.on_event("connect", startup)
+# app.on_event("disconnect", shutdown())
 
 from api import routes
