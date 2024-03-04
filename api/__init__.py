@@ -18,4 +18,4 @@ async def shutdown():
 app.on_event("connect", startup)
 # app.on_event("disconnect", shutdown())
 
-from models_api_angels.api.routes import routes
+from api.routes import routes
