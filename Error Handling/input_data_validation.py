@@ -138,20 +138,20 @@ def data_validation(json_data):
     try:
         schooling = json_data['schooling']
         previous_weight = json_data['previous_weight']
-        gestacional_risc = json_data['gestacional_risk']
-        has_arterial_hypertension = json_data['has_arterial_hypertension'] #checar pra ver isso aqui pq talvez n tenha has_
+        gestacional_risc = json_data['gestational_risk']
+        has_hypertension = json_data['has_hypertension'] #checar pra ver isso aqui pq talvez n tenha has_
         has_diabetes = json_data['has_diabetes']
-        has_cirurgia_pelvica = json_data['has_cirurgia_pelvica']
-        has_infeccao_urinaria = json_data['has_infeccao_urinaria']
-        has_malformacao_familiar = json_data['has_malformacao_familiar']
-        has_gemelaridade_familiar = json_data['has_gemelaridade_familiar']
-        quant_gest = json_data['quant_gest']
-        quant_aborto = json_data['quant_aborto']
-        quant_partos = json_data['quant_partos']
-        quant_partos_cesarios  = json_data['quant_partos_cesarios']
+        has_pelvic_surgery = json_data['has_pelvic_surgery']
+        has_urinary_infection = json_data['has_urinary_infection']
+        has_congenital_malformation = json_data['has_congenital_malformation']
+        has_family_twinship = json_data['has_family_twinship']
+        amount_gestation = json_data['amount_gestation']
+        amount_abortion = json_data['amount_abortion']
+        amount_deliveries = json_data['amount_deliveries']
+        amount_cesarean  = json_data['amount_cesarean']
         data_nascimento = json_data['data_nascimento']
         data_inicio_gestacao = json_data['data_inicio_gestacao'] #checar pra ver se de fato é assim q a data vem
-        data_primeiro_prenatal = json_data['data_primeiro_prenatal'] #checar se vem assim também
+        first_prenatal = json_data['first_prenatal'] #checar se vem assim também
         data_ultimo_parto = json_data['data_ultimo_parto'] #checar pra ver se vem assim
     except KeyError:
         return 17
@@ -166,34 +166,34 @@ def data_validation(json_data):
     if is_schooling_valid(schooling) is False:
         return 3
     
-    if is_field_binary(has_arterial_hypertension) is False:
+    if is_field_binary(has_hypertension) is False:
         return 4
     
     if is_field_binary(has_diabetes) is False:
         return 5
     
-    if is_field_binary(has_cirurgia_pelvica) is False:
+    if is_field_binary(has_pelvic_surgery) is False:
         return 6
     
-    if is_field_binary(has_infeccao_urinaria) is False:
+    if is_field_binary(has_urinary_infection) is False:
         return 7
     
-    if is_field_binary(has_malformacao_familiar) is False:
+    if is_field_binary(has_congenital_malformation) is False:
         return 8
     
-    if is_field_binary(has_gemelaridade_familiar) is False:
+    if is_field_binary(has_family_twinship) is False:
         return 9
     
-    if is_field_non_negative_integer(quant_gest) is False:
+    if is_field_non_negative_integer(amount_gestation) is False:
         return 10
     
-    if is_field_non_negative_integer(quant_aborto) is False:
+    if is_field_non_negative_integer(amount_abortion) is False:
         return 11
     
-    if is_field_non_negative_integer(quant_partos) is False:
+    if is_field_non_negative_integer(amount_deliveries) is False:
         return 12
     
-    if is_field_non_negative_integer(quant_partos_cesarios ) is False:
+    if is_field_non_negative_integer(amount_cesarean) is False:
         return 13
     
     if is_age_valid(data_nascimento, data_inicio_gestacao) is False:
@@ -214,4 +214,4 @@ def data_validation(json_data):
         quantidade_meses_entre_gravidezes = is_time_between_pregnancies_valid(data_inicio_gestacao, data_ultimo_parto)
         dict_dados_calculados_por_datas['quantidade_meses_entre_gravidezes'] = quantidade_meses_entre_gravidezes
 
-    return dict_dados_calculados_por_datas
+    return dict_dados_calculados_por_datas #retornar mais coisas
