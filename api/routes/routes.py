@@ -3,7 +3,6 @@ from api import app
 from api.models.model_load import load_model
 from api.models.data_validation import data_validation
 from api.models.data_treatment import data_treatment
-import pandas as pd
 
 #endpoint de teste
 @app.route('/api/')
