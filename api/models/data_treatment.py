@@ -36,9 +36,9 @@ def data_treatment(data):
     first_prenatal = first_prenatal_weeks(data['date_start_pregnancy'], data['date_first_prenatal'])
     time_between_pregnancies = calculate_time_between_pregnancies(data['date_start_pregnancy'], data['date_last_delivery'])
 
-    treated_data.append(int(data['schooling']))
     treated_data.append(float(data['previous_weight']))
     treated_data.append(int(data['gestational_risk']))
+    treated_data.append(int(data['schooling']))
     treated_data.append(int(data['has_hypertension']))
     treated_data.append(int(data['has_diabetes']))
     treated_data.append(int(data['has_pelvic_surgery']))

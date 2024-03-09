@@ -6,7 +6,6 @@ def load_model():
     model = data['modelo']
     #used_columns é só pra confirmar a sequencia certa dos parametros
     used_columns = data['colunas']
-    print(used_columns)
     #pra que isso?
 
-    return model, used_columns
+    return model

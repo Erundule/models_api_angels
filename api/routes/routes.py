@@ -18,18 +18,19 @@ def predict():
     try:
         #recebe os dados do modelo
         data = request.json
-        #lista de parametros do modelo   
         #colocar os parametros na ordem correta para o modelo de acordo com a lista presente em used_columns
         
         data_is_invalid = data_validation(data) is not True
-        if(data_is_invalid):
+        if data_is_invalid:
             validation_error_number = data_validation(data)
-            return validation_error_number
+            result = {'error_number':validation_error_number}
+            return result
 
         # Tratar os dados
         treated_data = data_treatment(data)
         # Transformar os dados em um DataFrame
         X_test = [treated_data]
+        print(X_test)
         # Carregar o modelo
         model = load_model()
         # predição da classe alvo: 0 ou 1
