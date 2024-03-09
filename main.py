@@ -1,5 +1,5 @@
 from api import app
-# from gatewayConection import client
+from gatewayConection import client
 
 # async def startup():
 #     await client.start()
