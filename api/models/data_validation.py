@@ -122,37 +122,24 @@ def is_time_between_pregnancies_valid(pregnancy_start_date, last_delivery_date):
 
 def data_validation(json_data):
 
-    """
-    Esta função retorna um número representando um erro específico que pode ser causado por problemas nas entradas
-    recebidas do gateway. Caso não haja erros, ela retorna um dicionário com 3 dados computados.
-
-    Parâmetros:
-    - json_data: Um dicionário contendo dados a serem validados.
-
-    Retorno:
-    - Um número representando o tipo de erro, ou um dicionário com dados calculados se não houver erros.
-    """
-
-    dict_dados_calculados_por_datas = {}
-
     try:
         schooling = json_data['schooling']
         previous_weight = json_data['previous_weight']
-        gestacional_risc = json_data['gestacional_risk']
-        has_arterial_hypertension = json_data['has_arterial_hypertension'] #checar pra ver isso aqui pq talvez n tenha has_
+        gestational_risk = json_data['gestational_risk']
+        has_hypertension = json_data['has_hypertension']
         has_diabetes = json_data['has_diabetes']
-        has_cirurgia_pelvica = json_data['has_cirurgia_pelvica']
-        has_infeccao_urinaria = json_data['has_infeccao_urinaria']
-        has_malformacao_familiar = json_data['has_malformacao_familiar']
-        has_gemelaridade_familiar = json_data['has_gemelaridade_familiar']
-        quant_gest = json_data['quant_gest']
-        quant_aborto = json_data['quant_aborto']
-        quant_partos = json_data['quant_partos']
-        quant_partos_cesarios  = json_data['quant_partos_cesarios']
-        data_nascimento = json_data['data_nascimento']
-        data_inicio_gestacao = json_data['data_inicio_gestacao'] #checar pra ver se de fato é assim q a data vem
-        data_primeiro_prenatal = json_data['data_primeiro_prenatal'] #checar se vem assim também
-        data_ultimo_parto = json_data['data_ultimo_parto'] #checar pra ver se vem assim
+        has_pelvic_surgery = json_data['has_pelvic_surgery']
+        has_urinary_infection = json_data['has_urinary_infection']
+        has_congenital_malformation = json_data['has_congenital_malformation']
+        has_family_twinship = json_data['has_family_twinship']
+        amount_gestation = json_data['amount_gestation']
+        amount_abortion = json_data['amount_abortion']
+        amount_deliveries = json_data['amount_deliveries']
+        amount_cesarean  = json_data['amount_cesarean']
+        mothers_birth_date = json_data['mothers_birth_date']
+        date_start_pregnancy = json_data['date_start_pregnancy']
+        date_first_prenatal = json_data['date_first_prenatal']
+        date_last_delivery = json_data['date_last_delivery']
     except KeyError:
         return 17
     
@@ -160,58 +147,49 @@ def data_validation(json_data):
     if is_previous_weight_valid(previous_weight) is False:
         return 1
     
-    if is_gestational_risk_valid(gestacional_risc) is False:
+    if is_gestational_risk_valid(gestational_risk) is False:
         return 2
     
     if is_schooling_valid(schooling) is False:
         return 3
     
-    if is_field_binary(has_arterial_hypertension) is False:
+    if is_field_binary(has_hypertension) is False:
         return 4
     
     if is_field_binary(has_diabetes) is False:
         return 5
     
-    if is_field_binary(has_cirurgia_pelvica) is False:
+    if is_field_binary(has_pelvic_surgery) is False:
         return 6
     
-    if is_field_binary(has_infeccao_urinaria) is False:
+    if is_field_binary(has_urinary_infection) is False:
         return 7
     
-    if is_field_binary(has_malformacao_familiar) is False:
+    if is_field_binary(has_congenital_malformation) is False:
         return 8
     
-    if is_field_binary(has_gemelaridade_familiar) is False:
+    if is_field_binary(has_family_twinship) is False:
         return 9
     
-    if is_field_non_negative_integer(quant_gest) is False:
+    if is_field_non_negative_integer(amount_gestation) is False:
         return 10
     
-    if is_field_non_negative_integer(quant_aborto) is False:
+    if is_field_non_negative_integer(amount_abortion) is False:
         return 11
     
-    if is_field_non_negative_integer(quant_partos) is False:
+    if is_field_non_negative_integer(amount_deliveries) is False:
         return 12
     
-    if is_field_non_negative_integer(quant_partos_cesarios ) is False:
+    if is_field_non_negative_integer(amount_cesarean) is False:
         return 13
     
-    if is_age_valid(data_nascimento, data_inicio_gestacao) is False:
+    if is_age_valid(mothers_birth_date, date_start_pregnancy) is False:
         return 14
-    else:
-        idade = is_age_valid(data_nascimento, data_inicio_gestacao)
-        dict_dados_calculados_por_datas['idade'] = idade
 
-    if is_first_prenatal_valid(data_inicio_gestacao, data_primeiro_prenatal) is False:
+    if is_first_prenatal_valid(date_start_pregnancy, date_first_prenatal) is False:
         return 15
-    else:
-        quantidade_semanas_pre_natal = is_first_prenatal_valid(data_inicio_gestacao, data_primeiro_prenatal)
-        dict_dados_calculados_por_datas['quantidade_semanas_pre_natal'] = quantidade_semanas_pre_natal
     
-    if is_time_between_pregnancies_valid(data_inicio_gestacao, data_ultimo_parto) is False:
+    if is_time_between_pregnancies_valid(date_start_pregnancy, date_last_delivery) is False:
         return 16
-    else:
-        quantidade_meses_entre_gravidezes = is_time_between_pregnancies_valid(data_inicio_gestacao, data_ultimo_parto)
-        dict_dados_calculados_por_datas['quantidade_meses_entre_gravidezes'] = quantidade_meses_entre_gravidezes
 
-    return dict_dados_calculados_por_datas
+    return True
