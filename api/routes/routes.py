@@ -26,7 +26,8 @@ def predict():
         data_is_invalid = data_validation(data) is not True
         if data_is_invalid:
             validation_error_number = data_validation(data)
-            return validation_error_number
+            result = {'error_number':validation_error_number}
+            return result
         
         # Tratar os dados
         treated_data = data_treatment(data)
