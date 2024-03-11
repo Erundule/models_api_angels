@@ -29,14 +29,20 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## Executando a API
+## Executando a API localmente
 
 1. Após instalar as dependências, execute o arquivo `main.py` para iniciar o servidor da API: <br>
 ```
 python main.py
 ```
-
-3. Após iniciar o servidor, você poderá acessar a API em `http://localhost:5000`.
+2. Após iniciar o servidor, você poderá acessar a API em `http://localhost:5000`.
+## Executando a API no docker
+```
+docker build -t models_api_angels .
+```
+```
+docker run -p 5000:5000 models_api_angels
+```
 
 ## Uso da API
 
