@@ -48,6 +48,6 @@ def predict():
 @app.route('/api/parameters', methods=['GET'])
 def model_parameters():
     try:
-        return jsonify({'message': parameters}), 200
+        return parameters, 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
